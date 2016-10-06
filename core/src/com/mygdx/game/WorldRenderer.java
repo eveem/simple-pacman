@@ -6,22 +6,25 @@ import com.badlogic.gdx.math.Vector2;
 
 public class WorldRenderer {
 
-	private PacmanGame pacmanGame;
+	// private PacmanGame pacmanGame;
 	private Texture pacmanImg;
 	private World world;
 	private SpriteBatch batch;
+	private MazeRenderer mazeRenderer;
 	
 	public WorldRenderer(PacmanGame pacmanGame, World world) {
-        this.pacmanGame = pacmanGame;
+        // this.pacmanGame = pacmanGame;
         batch = pacmanGame.batch;
  
         this.world = world;
  
+        mazeRenderer = new MazeRenderer(pacmanGame.batch, world.getMaze());
         pacmanImg = new Texture("pacman.png");
     }
 	
 	public void render(float delta) {
-        batch.begin();
+		mazeRenderer.render();
+		batch.begin();
         Pacman pacman = world.getPacman();
         Vector2 pos = pacman.getPosition();
         batch.draw(pacmanImg, pos.x, pos.y);
