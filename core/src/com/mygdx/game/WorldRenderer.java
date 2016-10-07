@@ -10,7 +10,7 @@ public class WorldRenderer {
 	private Texture pacmanImg;
 	private World world;
 	private SpriteBatch batch;
-	private MazeRenderer mazeRenderer;
+	private MazeRenderer mazeRenderer; 
 	public static final int BLOCK_SIZE = 40;
 	
 	public WorldRenderer(PacmanGame pacmanGame, World world) {
