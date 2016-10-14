@@ -15,6 +15,7 @@ public class Pacman {
     private int currentDirection;
     private int nextDirection;
     private Maze maze;
+    private World world;
     
     private static final int [][] DIR_OFFSETS = new int [][] {
         {0,0},
@@ -24,11 +25,12 @@ public class Pacman {
         {-1,0}
     };
     
-    public Pacman(int x, int y, Maze maze) {
+    public Pacman(int x, int y, World world) {
         position = new Vector2(x,y);
         currentDirection = DIRECTION_STILL;
         nextDirection = DIRECTION_STILL;
-        this.maze = maze;
+        this.world = world;
+        maze = world.getMaze();
     }    
  
     public Vector2 getPosition() {
@@ -56,6 +58,7 @@ public class Pacman {
         	}
         	if(maze.hasDotAt(getRow(), getColumn())) {
         		maze.removeDotAt(getRow(), getColumn());
+        		world.increaseScore();
         	}
         }
         position.x += SPEED * DIR_OFFSETS[currentDirection][0];
